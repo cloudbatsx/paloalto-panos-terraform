@@ -32,8 +32,8 @@ terraform {
 #
 # Or via terraform.tfvars (which is gitignored)
 provider "panos" {
-  hostname        = var.panos_hostname
-  username        = var.panos_username
-  password        = var.panos_password
+  hostname                = var.panos_hostname
+  username                = var.panos_username
+  password                = var.panos_password
   skip_verify_certificate = true # Self-signed cert on VM-Series
 }
