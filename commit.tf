@@ -18,8 +18,10 @@ resource "null_resource" "panos_commit" {
   }
 
   provisioner "local-exec" {
-    command = <<-EOT
-      curl -sk "https://${var.panos_hostname}/api/?type=commit&cmd=<commit></commit>&key=$(curl -sk "https://${var.panos_hostname}/api/?type=keygen&user=${var.panos_username}&password=${var.panos_password}" | grep -oP '(?<=<key>).*?(?=</key>)')"
+    interpreter = ["bash", "-c"]
+    command     = <<-EOT
+      API_KEY=$(curl -sk "https://${var.panos_hostname}/api/?type=keygen&user=${var.panos_username}&password=${var.panos_password}" | grep -oP '(?<=<key>).*?(?=</key>)')
+      curl -sk "https://${var.panos_hostname}/api/?type=commit&cmd=<commit></commit>&key=$API_KEY"
     EOT
   }
 
