@@ -1,0 +1,12 @@
+# terraform.tfvars.example — Copy to terraform.tfvars and fill in values from Layer 1
+# Get values from: cd ../paloalto-vmseries-aws-terraform && terraform output
+
+panos_hostname = "MANAGEMENT_EIP"
+panos_username = "admin"
+panos_password = "INSTANCE_ID"
+
+untrust_ip = "UNTRUST_ENI_PRIVATE_IP"
+trust_ip   = "TRUST_ENI_PRIVATE_IP"
+
+untrust_gw = "10.100.2.1"
+trust_gw   = "10.100.3.1"
